@@ -87,8 +87,15 @@ std::map<std::string, int> get_frequency(std::vector<std::string> tokens) {
 }
 
 std::vector<std::string> string_to_token(std::string str) {
+    std::vector<std::string> tokens;
     std::istringstream mstream(str);
-    return std::vector<std::string>(std::istream_iterator<std::string>{mstream}, std::istream_iterator<std::string>{});
+    std::string word;
+    
+    while (mstream >> word) {
+        tokens.push_back(word);
+    }
+    
+    return tokens;
 }
 
 float ngram_score(std::vector<std::string> base, std::vector<std::string> target, int n) {
